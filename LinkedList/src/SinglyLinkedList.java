@@ -34,7 +34,6 @@ public class SinglyLinkedList<E> {
         curr.next = new Node<>(data); // append Node to end of list
     }
 
-
     // delete said the element from list
     void delete(E data) {
         if (head == null) { // if head is null there's nothing to delete
@@ -66,4 +65,12 @@ public class SinglyLinkedList<E> {
         str.append("]");
         System.out.println(str);
     }
+
+    // add element to start of list
+    void prepend(E data) {
+        Node<E> newNode = new Node<>(data);
+        newNode.next = head;
+        head = newNode;
+    }
 }
+
