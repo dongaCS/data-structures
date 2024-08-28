@@ -5,7 +5,6 @@ public class Main {
         list.append("happy");
         list.append("day");
         list.append("today");
-
         list.print();
 
         list.delete("today");
@@ -14,6 +13,11 @@ public class Main {
         list.delete("day");
         list.delete("day");
         list.delete("happy");
+        list.print();
+
+        list.prepend("new");
+        list.prepend("before");
+        list.append("");
         list.print();
     }
 }
