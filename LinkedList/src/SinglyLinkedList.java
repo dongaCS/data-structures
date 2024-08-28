@@ -107,7 +107,7 @@ public class SinglyLinkedList<E> {
 
     // returns a new list in reverse order
     SinglyLinkedList<E> reverse() {
-        SinglyLinkedList<E> list = new SinglyLinkedList<E>();
+        SinglyLinkedList<E> list = new SinglyLinkedList<>();
         if (head == null) {
             return list;
         }
