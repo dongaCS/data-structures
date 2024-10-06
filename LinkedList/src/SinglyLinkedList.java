@@ -11,7 +11,7 @@ public class SinglyLinkedList<E> {
         }
     }
 
-    private Node<E> head;
+    Node<E> head;
     private int size;
 
     SinglyLinkedList() {
@@ -61,7 +61,7 @@ public class SinglyLinkedList<E> {
     }
 
     // prints the list
-    void print() {
+    String print() {
         Node<E> curr = head;
         StringBuilder str = new StringBuilder("[");
         while (curr != null) {
@@ -69,7 +69,8 @@ public class SinglyLinkedList<E> {
             curr = curr.next;
         }
         str.append("]");
-        System.out.println(str);
+        // System.out.println(str);
+        return(str).toString();
     }
 
     // add element to start of list
@@ -125,18 +126,25 @@ public class SinglyLinkedList<E> {
     }
 
     // removes the first element from the list
-    void removeFirst() {
+    Node<E> removeFirst() {
         if (head != null) {
+            Node<E> n = new Node<>(head.data);
             head = head.next;
+            n.next = null;
             size--;
+            return n;
         }
+        return null;
     }
 
     // removes the last element from the list
-    void removeLast() {
+    Node<E> removeLast() {
         if (head != null) {
+            size--;
             if (head.next == null) {
+                Node<E> n = new Node<>(head.data);
                 head = null;
+                return n;
             } else {
                 Node<E> prev = head;
                 Node<E> curr = head.next;
@@ -144,14 +152,17 @@ public class SinglyLinkedList<E> {
                     prev = curr;
                     curr = curr.next;
                 }
+                Node<E> n = new Node<>(curr.data);
                 prev.next = null;
+                return n;
             }
-            size--;
         }
+        return null;
     }
 
-
-
+    String nodeToString(Node<E> node) {
+        return node.data.toString();
+    }
 
 
 } // end of class
