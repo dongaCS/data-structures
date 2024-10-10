@@ -96,7 +96,7 @@ public class DoublyLinkedList<E> {
     }
 
     boolean contains(E data) {
-        Node<E> curr = head;
+        Node<E> curr = this.head;
         while(curr != null) {
             if(curr.data.equals(data)) {
                 return true;
@@ -107,6 +107,58 @@ public class DoublyLinkedList<E> {
         return false;
     }
 
+    void prepend(E data) {
+        Node<E> n = new Node<>(data);
+        if(this.head != null) {
+            n.next = this.head;
+            this.head.prev = n;
+        }
+        this.head = n;
+        size++;
+    }
+
+    void removeFirst() {
+        if(this.head != null) {
+            if(this.head.next != null) {
+                this.head.next.prev = null;
+                this.head = this.head.next;
+            } else {
+                this.head = null;
+            }
+            size--;
+        }
+    }
+
+    void removeLast() {
+        if(this.head == null) {
+            return;
+        }
+        if(this.size == 1) { // only head node
+            removeFirst();
+            return;
+        }
+        Node<E> curr = this.head;
+        while(curr.next != null) {
+            curr = curr.next;
+        }
+        curr.prev.next = null;
+    }
+
+    DoublyLinkedList<E> reverse() {
+        DoublyLinkedList<E> list = new DoublyLinkedList<>();
+        if(this.head == null) {
+            return list;
+        }
+        return reverseHelper(this.head, list);
+    }
+
+    DoublyLinkedList<E> reverseHelper(Node<E> n, DoublyLinkedList<E> list) {
+        if (n != null) {
+            reverseHelper(n.next, list);
+            list.append(n.data);
+        }
+        return list;
+    }
 
 
 } // end of class
