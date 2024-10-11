@@ -130,18 +130,18 @@ public class DoublyLinkedList<E> {
     }
 
     void removeLast() {
-        if(this.head == null) {
-            return;
+        if(this.head != null) {
+            if(this.size == 1) { // only head node
+                this.head = null;
+            } else {
+                Node<E> curr = this.head;
+                while (curr.next != null) {
+                    curr = curr.next;
+                }
+                curr.prev.next = null;
+            }
+            size--;
         }
-        if(this.size == 1) { // only head node
-            removeFirst();
-            return;
-        }
-        Node<E> curr = this.head;
-        while(curr.next != null) {
-            curr = curr.next;
-        }
-        curr.prev.next = null;
     }
 
     DoublyLinkedList<E> reverse() {
@@ -152,7 +152,7 @@ public class DoublyLinkedList<E> {
         return reverseHelper(this.head, list);
     }
 
-    DoublyLinkedList<E> reverseHelper(Node<E> n, DoublyLinkedList<E> list) {
+    private DoublyLinkedList<E> reverseHelper(Node<E> n, DoublyLinkedList<E> list) {
         if (n != null) {
             reverseHelper(n.next, list);
             list.append(n.data);
